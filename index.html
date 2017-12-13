@@ -16,6 +16,33 @@
     })(window,document);
    </script> 
     
+    
+   <script>
+       window._pcq = window._pcq || [];
+_pcq.push(['APIReady', callbackOnAPIReady]); //will execute callback function when PushCrew API is ready
+
+function callbackOnAPIReady() {
+    //now api is ready
+    _pcq.push(['addSubscriberToSegment', 'homepage', callbackForAddToSegment]);
+}
+
+function callbackForAddToSegment(response) {
+    if(response === -1) {
+        console.log('User is not a subscriber or has blocked notifications');
+    }
+  
+    if(response === false) {
+        console.log('Segment name provided is not valid. Maximum length of segment name can be 30 chars and it can only contain alphanumeric characters, underscore and dash.');
+    }
+  
+    if(response === true) {
+        console.log('User got added to the segment successfully. Now you may run any code you wish to execute after user gets added to segment successfully');
+    }
+}
+</script>
+    
+    
+    
 <style>
 .button {
     background-color: #4CAF50;
@@ -38,7 +65,7 @@
 
 <body>
     
-<h2>Buttons</h2>
+<h2>Buttons js api</h2>
 
 <button>Default Button</button>
 
